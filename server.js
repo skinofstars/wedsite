@@ -6,6 +6,7 @@ var express  = require('express'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     flash    = require('connect-flash'),
+    partials = require('express-partials'),
     config   = require('./config/config.js');
 
 var db       = require('./config/database.js')(mongoose, config.db);
@@ -20,6 +21,7 @@ app.configure(function() {
   app.use(express.json());
   app.use(express.urlencoded());
 
+  app.use(partials());
   app.set('view engine', 'ejs');
 
   // required for passport
