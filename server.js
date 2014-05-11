@@ -23,6 +23,7 @@ app.configure(function() {
 
   app.use(partials());
   app.set('view engine', 'ejs');
+  app.use(express.static(process.cwd() + '/public'));
 
   // required for passport
   app.use(express.session({ secret: 'c38218d0e08be83b88e14bf6075414cc' }));

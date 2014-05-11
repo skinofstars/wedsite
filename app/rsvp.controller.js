@@ -1,12 +1,21 @@
 'use strict';
 
-var User = require('./user.schema'),
-    _ = require('lodash');
+var User  = require('./user.schema'),
+    _     = require('lodash'),
+    utils = require('../config/utils');
 
 exports.show = function(req, res) {
+
+  var user = req.user;
+  user.password = '';
+
+  if (utils.reqIsXhr(req)) {
+    res.send(200, { user: user })
+  } else {
     res.render('rsvp', {
-      user : req.user
+      user : user
     });
+  }
 }
 
 exports.update = function(req, res) {

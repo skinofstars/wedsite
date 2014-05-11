@@ -1,6 +1,7 @@
 'use strict';
 
-var rsvpcontroller = require('./rsvp.controller');
+var rsvpcontroller    = require('./rsvp.controller'),
+    guestscontroller  = require('./guests.controller');
 
 module.exports = function(app, passport) {
 
@@ -37,10 +38,9 @@ module.exports = function(app, passport) {
   });
 
 
-  // ## TODO: make admin only. this is for us to add people ##
+  // for creating and listing
   app.get('/create', function(req, res) {
-    // render the page and pass in any flash data if it exists
-    res.render('create.ejs', { message: req.flash('createMessage') });
+    guestscontroller.list(req, res);
   });
 
   // process the create form
@@ -66,16 +66,6 @@ module.exports = function(app, passport) {
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-}
-
-
-function isAdmin(req, res, next) {
-  if (req.isAuthenticated() && req.user.isAdmin) {
-    // FIXME this kinda assumes they passed in the req.user object right
-    // DON@T HAX MAI WEDDIN!!1!
     return next();
   }
   res.redirect('/');

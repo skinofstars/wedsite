@@ -52,7 +52,7 @@ var userSchema = new Schema({
     type: Boolean,
     default: false
   },
-  family: {
+  group: {
     type: String
   }
 });
