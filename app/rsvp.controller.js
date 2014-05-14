@@ -2,15 +2,24 @@
 
 var User  = require('./user.schema'),
     _     = require('lodash'),
-    utils = require('../config/utils');
+    utils = require('../config/utils'),
+    users = {}; // bit hacky, sticking it here so i can update it in User.find()
 
 exports.show = function(req, res) {
+  var user  = req.user;
 
-  var user = req.user;
+  // find the group members
+  User.find({group:user.group}, function(err, rels) {
+    users = rels;
+  });
+
+  // bit of security cleanup
   user.password = '';
+  users = _.map(users, function(u) { u.password = ''; return u })
 
+  // determine response
   if (utils.reqIsXhr(req)) {
-    res.send(200, { user: user })
+    res.send(200, { user: user, users: users })
   } else {
     res.render('rsvp', {
       user : user

@@ -3,15 +3,16 @@
 angular.module('Towed', ['ngResource']);
 
 function RsvpCtrl($scope, $resource) {
-  $scope.foo = "foo!";
+  $scope.asyncData = $resource('/rsvp');
 
-  window.deb = $scope.rsvp = $resource('/rsvp');
-
-  console.log($scope.rsvp.get())
+  $scope.asyncData.get(function(a,b) {
+    // user is the logged in
+    // users are those relatedby group
+    $scope.user   = a.user;
+    $scope.users  = a.users;
+  });
 
   // get invite data
-
-  // load for user and related users
 
   // on save, return data
     // update success

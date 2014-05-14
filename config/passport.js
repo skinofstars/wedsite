@@ -53,8 +53,9 @@ module.exports = function(passport) {
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
 
-          if (req.body.email.length > 0)
+          if (req.body.email.length > 0) {
             newUser.email = req.body.email;
+          }
 
           newUser.group = req.body.group;
           newUser.isAdmin = utils.checkToBool(req.body.isAdmin);
@@ -67,7 +68,7 @@ module.exports = function(passport) {
           newUser.save(function(err) {
               if (err)
                   throw err;
-              return done(null, newUser);
+              return done(null, null);
           });
         }
 

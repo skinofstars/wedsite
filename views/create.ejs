@@ -1,5 +1,5 @@
 
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-12">
 
   <h1><span class="fa fa-sign-in"></span> create</h1>
 
@@ -9,56 +9,92 @@
   <% } %>
 
   <!-- LOGIN FORM -->
-  <form action="/create" method="post">
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" class="form-control" name="username">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" name="password">
-    </div>
+  <form action="/create" method="post" class="clearfix well">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" name="username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
 
-    <div class="form-group">
-      <label>Family</label>
-      <input type="text" class="form-control" name="group">
-    </div>
+      <div class="form-group">
+        <label>Group</label>
+        <input type="text" class="form-control" name="group">
+      </div>
 
-    <div class="form-group">
-      <label>Email</label>
-      <input type="text" class="form-control" name="email">
-    </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" name="email">
+      </div>
 
-    <h3>Invite</h3>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="ceremony"> Attending ceremony
-      </label>
     </div>
 
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="reception"> Attending reception
-      </label>
+    <div class="col-sm-3 col-sm-offset-1">
+      <h3>Invite</h3>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="ceremony"> Ceremony
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="reception"> Reception
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="party"> Party
+        </label>
+      </div>
+
+      <hr>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="isAdmin"> Admin
+        </label>
+      </div>
+
+      <hr>
+
+      <button type="submit" class="btn btn-warning btn-lg">Add</button>
     </div>
 
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="party"> Attending party
-      </label>
-    </div>
-
-    <hr>
-
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="isAdmin"> Admin
-      </label>
-    </div>
-
-    <button type="submit" class="btn btn-warning btn-lg">Add</button>
   </form>
 
+  <hr>
+
+  <table class="table">
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Responded on</th>
+      <th>Ceremony</th>
+      <th>Reception</th>
+      <th>Party</th>
+    </tr>
+  <% for(var i=0; i<users.length; i++) {%>
+    <tr class="<%= (users[i].updated !== undefined) ? 'success' : 'info' %>">
+      <td><%= users[i].username %></td>
+      <td><%= users[i].email %></td>
+      <td><%= (users[i].updated !== undefined) ? users[i].updated : 'Not responded' %></td>
+      <td class="<% if (!users[i].invite.ceremony) { %>text-muted<%}%>">
+        <%= (users[i].updated !== undefined) ? (users[i].rsvp.ceremony ? 'Yes' : 'No') : 'Not responded' %>
+      </td>
+      <td class="<% if (!users[i].invite.reception) { %>text-muted<%}%>">
+        <%= (users[i].updated !== undefined) ? (users[i].rsvp.reception ? 'Yes' : 'No') : 'Not responded' %>
+      </td>
+      <td class="<% if (!users[i].invite.party) { %>text-muted<%}%>">
+        <%= (users[i].updated !== undefined) ? (users[i].rsvp.party ? 'Yes' : 'No') : 'Not responded' %>
+      </td>
+    </tr>
+  <% } %>
+  </table>
 
 </div>
 
