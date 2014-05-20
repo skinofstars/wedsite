@@ -1,2 +1,6 @@
 .vagrant
 node_modules/
+bower_components/
+public/bower_components/
+public/vendor/
+app/user.seeds.js

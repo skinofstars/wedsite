@@ -12,9 +12,23 @@ function RsvpCtrl($scope, $resource) {
     $scope.users  = a.users;
   });
 
-  // get invite data
+  $scope.update = function(users) {
+    $scope.master = angular.copy(users);
+    $scope.asyncData.save(users);
+  };
 
-  // on save, return data
-    // update success
+  $scope.isUnchanged = function(users) {
+    return angular.equals(users, $scope.master);
+  };
+
+}
+
+function SigninCtrl($scope, $resource) {
+  $scope.signinResource = $resource('/signin');
+  $scope.signoutResource = $resource('/signout');
+
+  $scope.signin = function(user) {
+    $scope.signin.save(a, b)
+  }
 
 }

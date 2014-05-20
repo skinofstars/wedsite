@@ -2,13 +2,13 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container col-sm-12">
     <ul class="nav navbar-nav">
-      <li><a href="">Couple</a></li>
-      <li><a href="">Gang</a></li>
-      <li><a href="">Event</a></li>
-      <li><a href="">Venue</a></li>
-      <li><a href="">Area</a></li>
-      <li><a href="">Gifting</a></li>
-      <li><a href="">RSVP</a></li>
+      <li><a href="#couple">Couple</a></li>
+      <li><a href="#gang">Gang</a></li>
+      <li><a href="#event">Event</a></li>
+      <li><a href="#venue">Venue</a></li>
+      <li><a href="#area">Area</a></li>
+      <li><a href="#gifting">Gifting</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
@@ -22,12 +22,13 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Kevin &amp; Emily</h1>
+      <span class="subby">are getting married on</span>
       <h2>26th September 2014</h2>
-      <p class="lead">Crazy Bear, Stadhampton, Oxfordshire</p>
+      <span class="subby">at</span>#
+      <h3>The Crazy Bear, Stadhampton, Oxfordshire</h3>
 
-      <p class="lead">
-        <a href="#{}" class="btn btn-default btn-outline btn-lg"><span class="glyphicon glyphicon-edit"></span> RSVP</a>
-      </p>
+      <br>
+      <a href="#rsvp" class="btn btn-default btn-outline btn-lg"><span class="fa fa-check-square-o"></span> RSVP</a>
     </div>
   </div>
 </section>
@@ -114,7 +115,7 @@
     <h3>Nearby hotels</h3>
 
     <div class="row clearfix">
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <div class="well">
           Coach &amp; Horses Inn<br />
           Watlington Road<br />
@@ -124,7 +125,7 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <div class="well">
           George Hotel Wallingford<br />
           High Street<br />
@@ -135,7 +136,7 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <div class="well">
           Holiday Inn<br />
           Grenoble Road<br />
@@ -145,14 +146,14 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <div class="well">
           Premier Inn<br />
           Cowley roundabout
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <div class="well">
           Travelodge<br />
           Wheatley
@@ -164,11 +165,12 @@
     <section class="row" id="">
  -->
     <div class="row">
+      <h3>Transport</h3>
       <p>The event will all be held at the Crazy Bear, from the ceremony, to the reception, to the party. This means you don’t need to brave the elements or find transport between each part. We’ll even make sure the bar stays open all day!</p>
 
       <p>You will, however, need to find your transport home. Here are some taxi numbers that should help:</p>
 
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <div class="well">
           <dl>
             <dt>Taxi company</dt>
@@ -177,7 +179,7 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-md-3">
         <div class="well">
           <dl>
             <dt>Taxi company</dt>
@@ -207,13 +209,14 @@
 
 <section class="row" id="rsvp">
   <div class="container">
+
+    <div class="row" ng-controller="SigninCtrl">
       <h3>RSVP</h3>
 
       <p>Confirmation of attendance (please reply by ......)
 
       <div class="col-sm-6">
-        <!-- LOGIN FORM -->
-        <form action="/signin" method="post">
+        <form action="/signin" method="post" >
           <div class="form-group">
             <label>Username</label>
             <input type="text" class="form-control" name="username">
@@ -226,6 +229,30 @@
           <button type="submit" class="btn btn-warning btn-lg">Login</button>
         </form>
       </div>
+
+    </div>
+
+<!--     <div class="row" ng-controller="RsvpCtrl">
+      <form ng-if="users.length > 0">
+        <div ng-repeat="groupy in users">
+          <div class="col-sm-6">
+          <h3>{{ groupy.username }}</h3>
+          <p>Updated {{ groupy.updated }}</p>
+
+            <div ng-repeat="(key, val) in groupy.invite">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="{{ key }}" ng-checked="groupy.rsvp[key]" ng-model="groupy.rsvp[key]"> Attending {{ key }}?
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-warning btn-sm">Update</button>
+      </form>
+
+    </div> -->
+
   </div>
 </section>
 

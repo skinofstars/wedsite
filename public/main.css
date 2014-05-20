@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'Oleo Script';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oleo Script'), local('OleoScript-Regular'), url(/vendor/fonts/Oleo_Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Maven Pro'), url(/vendor/fonts/Maven_Pro.woff) format('woff');
+}
+
+
+body {
+  /*padding-top:40px;*/
+  font-family: 'Maven Pro';
+  font-size: 250%;
+}
+
+h1, h2, h3 {
+  font-family: 'Oleo Script';
+}
+
+h2, h3 {
+  font-size: 200% !important;
+}
+
+h1 {
+  font-size: 450% !important;
+}
+
+.subby {
+  font-size: 150%;
+  font-family: 'Oleo Script';
+}
+
+section {
+  /*height: 85vh;*/
+  padding: 80px 0;
+  /*width: 95vw;*/
+}
+
+.navbar-default {
+  background-color: rgba(255,255,255,0.8);
+}
+
+.nav a  {
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+
+
+
+/*a[ id= "servicios" ]:target ~ #main article.panel {
+    -webkit-transform: translateY( 0px);
+    transform: translateY( 0px );
+}
+
+a[ id= "galeria" ]:target ~ #main article.panel {
+    -webkit-transform: translateY( -500px );
+    transform: translateY( -500px );
+}
+a[ id= "contacto" ]:target ~ #main article.panel {
+    -webkit-transform: translateY( -1000px );
+    transform: translateY( -1000px );
+}
+*/
+
+/*
+  blue 3CB5B5
+  orange EC6C20
+  yellow FCD920
+  pink E53B51
+*/
+
+#area .well {
+  background-color: #fd7d31;
+  border-color: transparent;
+}
+
+
+#leader, .jumbotron {
+  background-color: #3CB5B5;
+}
+#couple {
+  background-color: #EC6C20;
+}
+#gang {
+  background-color: #FCD920;
+}
+#event {
+  background-color: #E53B51;
+}
+#venue {
+  background-color: #3CB5B5;
+}
+#area {
+  background-color: #EC6C20;
+}
+#gifting {
+  background-color: #FCD920;
+}
+#rsvp {
+  background-color: #E53B51;
+
+}

@@ -1,4 +1,4 @@
-<div ng-controller="RsvpCtrl">
+<div ng-controller="RsvpCtrl" class="container">
 
   <div class="page-header text-center">
     <h1><span class="fa fa-check-square-o"></span> RSVP</h1>
@@ -7,54 +7,23 @@
 
   <div class="row">
 
-    <!-- LOCAL INFORMATION -->
-    <div class="col-sm-6">
-      <div class="well">
-        <h3><span class="fa fa-user"></span> Your details</h3>
+    <form>
+      <div ng-repeat="groupy in users">
+        <div class="col-sm-6">
+        <h3>{{ groupy.username }}</h3>
+        <p>Updated {{ groupy.updated }}</p>
 
-          <p>
-            <strong>username</strong>: <%= user.username %><br>
-            <strong>email</strong>: <%= user.email %><br>
-
-            <strong>rsvp ceremony</strong>: <%= user.rsvp.ceremony %><br>
-            <strong>rsvp reception</strong>: <%= user.rsvp.reception %><br>
-            <strong>rsvp party</strong>: <%= user.rsvp.party %><br>
-
-          </p>
-
+          <div ng-repeat="(key, val) in groupy.invite">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="{{ key }}" ng-checked="groupy.rsvp[key]" ng-model="groupy.rsvp[key]"> Attending {{ key }}?
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="col-sm-6">
-      <form action="/rsvp" method="post">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="text" class="form-control" name="email">
-        </div>
-
-        <h3>RSVP</h3>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="ceremony"> Attending ceremony
-          </label>
-        </div>
-
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="reception"> Attending reception
-          </label>
-        </div>
-
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="party"> Attending party
-          </label>
-        </div>
-
-
-        <button type="submit" class="btn btn-warning btn-sm">Update</button>
-      </form>
-    </div>
+      <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-warning btn-sm">Update</button>
+    </form>
 
   </div>
 </div> <!-- /end RsvpCtrl -->
