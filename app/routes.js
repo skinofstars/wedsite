@@ -19,11 +19,11 @@ module.exports = function(app, passport) {
 
   // login: POST
   // app.post('/signin', do all our passport stuff here);
-  app.post('/signin', passport.authenticate('local-login', {
-    successRedirect : '/rsvp',
-    failureRedirect : '/',
-    failureFlash : true
-  }));
+  app.post('/signin',
+    passport.authenticate('local-login'), function(req, res){
+      // res.send(200, {user: req.body.user});
+      rsvpcontroller.show(req, res);
+    });
 
   // rsvp: PUT
   // rsvp self
@@ -45,7 +45,7 @@ module.exports = function(app, passport) {
 
   // process the create form
   app.post('/create', passport.authenticate('local-create', {
-    successRedirect : '/rsvp',
+    successRedirect : '/create',
     failureRedirect : '/create',
     failureFlash : true
   }));

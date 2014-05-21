@@ -67,27 +67,30 @@ exports.update = function(req, res) {
       // update each user
       for (var i in users) {
 
-        // console.log('user._id', users[i]._id)
-
         // double check using right groupy to merge with
         var groupy = _.where(groupies, {username: users[i].username})[0];
 
         users[i].rsvp = _.extend(users[i].rsvp, groupy.rsvp);
         users[i].updated = Date.now();
+
+        console.log(users[i]);
+
         users[i].save(function(err) {
           if (err) {
-            console.log(err);
+            // console.log(err);
             res.send(400, {
               message: "error saving user"
             });
           }
         });
 
-        // clear the password as we're going to return this user
-        users[i].password = '';
       }
 
-      res.send(200, { user: user, users: users });
+      // FIXME should be map or something?
+      // anyway, groupies isn't updating the date
+      // groupies = _.each(groupies, var g, _.omit(g, "password"));
+
+      res.send(200, { user: user, users: groupies });
     });
 
   } else {

@@ -78,22 +78,24 @@
       <th>Reception</th>
       <th>Party</th>
     </tr>
-  <% for(var i=0; i<users.length; i++) {%>
-    <tr class="<%= (users[i].updated !== undefined) ? 'success' : 'info' %>">
-      <td><%= users[i].username %></td>
-      <td><%= users[i].email %></td>
-      <td><%= (users[i].updated !== undefined) ? users[i].updated : 'Not responded' %></td>
-      <td class="<% if (!users[i].invite.ceremony) { %>text-muted<%}%>">
-        <%= (users[i].updated !== undefined) ? (users[i].rsvp.ceremony ? 'Yes' : 'No') : 'Not responded' %>
-      </td>
-      <td class="<% if (!users[i].invite.reception) { %>text-muted<%}%>">
-        <%= (users[i].updated !== undefined) ? (users[i].rsvp.reception ? 'Yes' : 'No') : 'Not responded' %>
-      </td>
-      <td class="<% if (!users[i].invite.party) { %>text-muted<%}%>">
-        <%= (users[i].updated !== undefined) ? (users[i].rsvp.party ? 'Yes' : 'No') : 'Not responded' %>
-      </td>
-    </tr>
-  <% } %>
+    <% if (typeof users != "undefined") { %>
+      <% for(var i=0; i<users.length; i++) { %>
+        <tr class="<%= (users[i].updated !== undefined) ? 'success' : 'info' %>">
+          <td><%= users[i].username %></td>
+          <td><%= users[i].email %></td>
+          <td><%= (users[i].updated !== undefined) ? users[i].updated : 'Not responded' %></td>
+          <td class="<% if (!users[i].invite.ceremony) { %>text-muted<%}%>">
+            <%= (users[i].updated !== undefined) ? (users[i].rsvp.ceremony ? 'Yes' : 'No') : 'Not responded' %>
+          </td>
+          <td class="<% if (!users[i].invite.reception) { %>text-muted<%}%>">
+            <%= (users[i].updated !== undefined) ? (users[i].rsvp.reception ? 'Yes' : 'No') : 'Not responded' %>
+          </td>
+          <td class="<% if (!users[i].invite.party) { %>text-muted<%}%>">
+            <%= (users[i].updated !== undefined) ? (users[i].rsvp.party ? 'Yes' : 'No') : 'Not responded' %>
+          </td>
+        </tr>
+      <% } %>
+    <% } %>
   </table>
 
 </div>
