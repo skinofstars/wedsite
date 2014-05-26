@@ -47,7 +47,7 @@ section {
 }
 
 .navbar-default {
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255,255,255,0.5);
 }
 
 .nav a  {
@@ -70,14 +70,53 @@ section {
 }
 
 
-#leader, .jumbotron {
+#leader {
   background-color: #3CB5B5;
+
+}
+.branches {
+  display: block;
+  float: right;
+  height: 260px;
+  width: 396px;
+  background-image: url('branches.png');
+}
+#leader .well {
+  background-color: #2ba4a5;
+  border-color: transparent;
 }
 #couple {
   background-color: #EC6C20;
 }
+.couple-images {
+
+}
+.emily{
+  display: block;
+  float: right;
+  height: 302px;
+  width: 127px;
+  background: url('emily.png') no-repeat 0 72px;
+}
+.kevin {
+  display: block;
+  float: right;
+  height: 302px;
+  width: 99px;
+  background: url('kevin.png') no-repeat;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+dt {
+  padding-top: 20px;
+}
+
 #gang {
-  background-color: #FCD920;
+  background-color: #E53B51;
 }
 #event {
   background-color: #E53B51;
@@ -101,4 +140,17 @@ section {
 #rsvp .btn-lg {
   background-color: #3CB5B5;
   border-color: #4dc6c6;
+}
+.rsvpstep, .rsvpinfo {
+  margin-top: 40px;
+}
+
+animate-enter {
+  -webkit-transition: 1s linear all; /* Chrome */
+  transition: 1s linear all;
+  opacity: 0;
+}
+
+.animate-enter.animate-enter-active {
+  opacity: 1;
 }

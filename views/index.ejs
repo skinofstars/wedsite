@@ -8,7 +8,6 @@
       <li><a href="#venue">Venue</a></li>
       <li><a href="#area">Area</a></li>
       <li><a href="#gifting">Gifting</a></li>
-      <li><a href="#rsvp">RSVP</a></li>
     </ul>
   </div>
 </nav>
@@ -18,19 +17,103 @@
   <div class="alert alert-danger"><%= message %></div>
 <% } %>
 
-<section class="row" id="leader">
-  <div class="jumbotron">
-    <div class="container">
+<section class="row" id="leader" ng-controller="RsvpCtrl">
+<div class="branches"></div>
+  <div class="container">
+    <div class="col-sm-12">
       <h1>Kevin &amp; Emily</h1>
       <span class="subby">are getting married on</span>
       <h2>26th September 2014</h2>
       <span class="subby">at</span>
       <h3>The Crazy Bear, Stadhampton, Oxfordshire</h3>
 
-      <br>
-      <a href="#rsvp" class="btn btn-default btn-outline btn-lg"><span class="fa fa-check-square-o"></span> RSVP</a>
     </div>
   </div>
+
+  <div class="container rsvp">
+
+    <!-- new user -->
+    <div class="rsvpstep col-sm-12" ng-if="state == 0">
+      <a ng-click="showSigninForm()" class="btn btn-default btn-outline btn-lg"><span class="fa fa-check-square-o"></span> RSVP</a>
+    </div>
+
+    <!-- user login form -->
+    <div class="rsvpstep col-sm-12 clearfix" ng-if="state == 1" ng-animate=" 'animate' ">
+
+      <form class="col-sm-6 well">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" name="username" ng-model="user.username">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" name="password" ng-model="user.password">
+        </div>
+
+        <button ng-click="signin(user)" class="btn btn-primary btn-lg">Login</button>
+      </form>
+
+    </div>
+
+    <!-- user logged in -->
+    <div class="rsvpstep col-sm-12" ng-if="state == 2">
+
+      <div class="clearfix">
+        <form class="">
+          <div ng-repeat="groupy in users">
+
+            <div class="col-sm-6">
+              <div class="well">
+                <h3>{{ groupy.username }}</h3>
+
+                <p>I would like to attend...</p>
+
+                <div class="checkbox" ng-if="groupy.invite.ceremony">
+                  <label>
+                    <input type="checkbox" name="ceremony" ng-checked="groupy.rsvp.ceremony" ng-model="groupy.rsvp.ceremony"> ceremony
+                  </label>
+                </div>
+
+                <div class="checkbox" ng-if="groupy.invite.reception">
+                  <label>
+                    <input type="checkbox" name="reception" ng-checked="groupy.rsvp.reception" ng-model="groupy.rsvp.reception"> reception
+                  </label>
+                </div>
+
+                <div class="checkbox" ng-if="groupy.invite.party">
+                  <label>
+                    <input type="checkbox" name="party" ng-checked="groupy.rsvp.party" ng-model="groupy.rsvp.party"> party
+                  </label>
+                </div>
+
+                <div class="col-sm-12 clearfix">
+                  <small class="pull-right">Updated {{ groupy.updated }}</small>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+
+      <div class="rsvpactions">
+        <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-primary btn-lg">Update RSVP</button>
+        <br>
+        <a href="/signout" class="btn btn-default btn-sm">Sign out</a>
+      </div>
+
+    </div>
+
+    <div class="rsvpinfo col-sm-12">
+      <p>Please RSVP by July 11<sup>th</sup> 2014</p>
+
+    </div>
+
+
+  </div>
+</div>
 </section>
 
 
@@ -39,6 +122,11 @@
   <div class="container">
     <div class="col-sm-12">
       <h3>About the couple</h3>
+
+      <div class="couple-images">
+        <div class="emily"></div>
+        <div class="kevin"></div>
+      </div>
 
       <p>We met at Oxford Brookes University in 2006.</p>
 
@@ -53,31 +141,6 @@
   </div>
 </section>
 
-
-
-<section class="row" id="gang">
-  <div class="container">
-    <div class="col-sm-12">
-      <h3>Meet the gang</h3>
-
-      <div class="col-md-6">
-        <h4>Bridesmaids</h4>
-        <p>Abby Harris</p>
-        <p>Amy Battrick</p>
-        <p>Sarah Carmody</p>
-        <p>Shiao-li Green</p>
-      </div>
-
-      <div class="col-md-6">
-        <h4>Groomsmen</h4>
-        <p>Charlie Thomas</p>
-        <p>Edward Lucas</p>
-        <p>Roland Romata</p>
-        <p>Toby Chiang</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
@@ -118,11 +181,13 @@
     <div class="col-sm-12">
       <h3>Venue</h3>
 
-      Date
-      26th September 2014
 
-      Location &amp; Directions
-      Crazy Bear, Stadhampton, Oxfordshire
+      <p>Crazy Bear, Stadhampton, Oxfordshire, OX44 7UR - <a href="http://www.crazybeargroup.co.uk/stadhampton/">crazybeargroup.co.uk/stadhampton</a></p>
+
+    </div>
+
+    <div class="col-sm-12">
+      <div id="map" class="img-rounded"></div>
     </div>
   </div>
 </section>
@@ -181,8 +246,8 @@
         <div class="col-md-3">
           <div class="well">
             Travelodge<br />
-            London Rd<br /> 
-            Wheatley<br /> 
+            London Rd<br />
+            Wheatley<br />
             Oxford <br />
             OX33 1JH<br />
             0871 984 6207
@@ -240,77 +305,26 @@
   </div>
 </section>
 
-
-
-<section class="row" id="rsvp" ng-controller="RsvpCtrl">
+<section class="row" id="gang">
   <div class="container">
-
     <div class="col-sm-12">
-      <h3>RSVP</h3>
-
-      <p>Confirmation of attendance - please reply by July 11<sup>th</sup> 2014</p>
-
-      <div ng-if="!users">
-        <form>
-          <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" name="username" ng-model="user.username">
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password" ng-model="user.password">
-          </div>
-
-          <button ng-click="signin(user)" class="btn btn-warning btn-lg">Login</button>
-        </form>
-      </div>
-
+      <h3>Thank you</h3>
+        <p>For all your help in putting this together. For putting up with us
+          while we panic our way through organising. For being there for us.
+        </p>
+        <p>
+          <strong>Parents:</strong> Dr. Stephen Chiang, Emma Chiang, Nicki Carmody
+        </p>
+        <p>
+          <strong>Bridesmaids:</strong> Amy Battrick, Abby Harris, Sarah Carmody, Shiao-li Green.
+        </p>
+        <p>
+          <strong>Groomsmen:</strong> Edward Lucas, Charlie Thomas, Roland Romata, Toby Chiang
+        </p>
     </div>
-
-    <div class="col-sm-12" ng-if="users.length > 0">
-
-      <div class="clearfix">
-        <form class="clearfix">
-          <div ng-repeat="groupy in users">
-
-            <div class="col-sm-6">
-              <div class="well">
-                <h3>{{ groupy.username }}</h3>
-                <p>Updated {{ groupy.updated }}</p>
-
-
-                  <div class="checkbox" ng-repeat="(key, val) in groupy.invite">
-                    <label>
-                      <input type="checkbox" name="{{ key }}" ng-checked="groupy.rsvp[key]" ng-model="groupy.rsvp[key]"> Attending {{ key }}?
-                    </label>
-                  </div>
-
-              </div>
-            </div>
-
-          </div>
-
-        </form>
-      </div>
-
-      <div class="rsvpactions">
-        <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-warning btn-lg">Update</button>
-        <a href="/signout" class="btn btn-default btn-sm">Sign out</a>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-</section>
-
-
-
-<section class="row" id="">
-  <div class="container">
-      We made this :)
   </div>
 </section>
+
 
 
 

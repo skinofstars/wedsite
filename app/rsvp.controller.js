@@ -73,13 +73,13 @@ exports.update = function(req, res) {
         users[i].rsvp = _.extend(users[i].rsvp, groupy.rsvp);
         users[i].updated = Date.now();
 
-        console.log(users[i]);
+        // console.log(users[i]);
 
         users[i].save(function(err) {
           if (err) {
             // console.log(err);
             res.send(400, {
-              message: "error saving user"
+              message: "error saving users"
             });
           }
         });
@@ -90,7 +90,11 @@ exports.update = function(req, res) {
       // anyway, groupies isn't updating the date
       // groupies = _.each(groupies, var g, _.omit(g, "password"));
 
-      res.send(200, { user: user, users: groupies });
+      // groupies = _.each(groupies, var g, function() { g.updated = new Time.now() })
+
+      users = _.each(users, function(u){ delete u.password })
+
+      res.send(200, { users: users });
     });
 
   } else {

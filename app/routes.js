@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
   // app.post('/signin', do all our passport stuff here);
   app.post('/signin',
     passport.authenticate('local-login'), function(req, res){
-      // res.send(200, {user: req.body.user});
+      // console.log('req',req)
       rsvpcontroller.show(req, res);
     });
 
