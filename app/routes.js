@@ -11,7 +11,7 @@ module.exports = function(app, passport) {
   app.get('/', function(req, res) {
     res.render('index.ejs', {
       message: req.flash('message')
-    })
+    });
   });
 
 
@@ -62,7 +62,7 @@ module.exports = function(app, passport) {
   // # admin page
   // rsvp list
 
-}
+};
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {

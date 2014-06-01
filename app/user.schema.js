@@ -18,7 +18,7 @@ var rsvpConcerns = {
     type: Boolean,
     default: false
   }
-}
+};
 
 var userSchema = new Schema({
   username: {

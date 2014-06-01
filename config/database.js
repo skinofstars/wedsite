@@ -13,4 +13,4 @@ module.exports = function(mongoose, config) {
     console.log("Mongo working!");
   });
 
-}
+};

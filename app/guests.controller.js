@@ -33,11 +33,11 @@ exports.list = function(req, res) {
     }
   });
 
-}
+};
 
 exports.create = function(req, res) {
 
-}
+};
 
 function isAdmin(req, res, next) {
   if (req.isAuthenticated() && req.user.isAdmin) {

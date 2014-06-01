@@ -28,7 +28,7 @@ module.exports = function(passport) {
     passReqToCallback : true
   },
   function(req, username, password, done) {
-    console.log('create user '+username)
+    console.log('create user '+username);
     // asynchronous
     // User.findOne wont fire unless data is sent back
     process.nextTick(function() {
@@ -60,9 +60,9 @@ module.exports = function(passport) {
           newUser.group = req.body.group;
           newUser.isAdmin = utils.checkToBool(req.body.isAdmin);
 
-          newUser.invite.ceremony   = utils.checkToBool(req.body.ceremony)
-          newUser.invite.reception  = utils.checkToBool(req.body.reception)
-          newUser.invite.party      = utils.checkToBool(req.body.party)
+          newUser.invite.ceremony   = utils.checkToBool(req.body.ceremony);
+          newUser.invite.reception  = utils.checkToBool(req.body.reception);
+          newUser.invite.party      = utils.checkToBool(req.body.party);
 
           // save the user
           newUser.save(function(err) {
@@ -83,26 +83,26 @@ module.exports = function(passport) {
   },
   function(req, username, password, done) { // callback with username and password from our form
 
-    console.log('signin '+username)
+    console.log('signin '+username);
 
     // find a user whose username is the same as the forms username
     // we are checking to see if the user trying to login already exists
     User.findOne({ 'username' :  username }, function(err, user) {
       // if there are any errors, return the error before anything else
       if (err) {
-        console.log('err')
+        console.log('err');
         return done(err);
       }
 
       // if no user is found, return the message
       if (!user) {
-        console.log('!user')
+        console.log('!user');
         return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
       }
 
       // if the user is found but the password is wrong
       if (!user.validPassword(password)) {
-        console.log('!pass')
+        console.log('!pass');
         return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
       }
 

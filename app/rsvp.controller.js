@@ -30,14 +30,14 @@ exports.show = function(req, res) {
         case 'ceremony':
         case 'reception':
         case 'party':
-          if (u.invite[key] == false)
+          if (u.invite[key] === false)
             delete u.invite[key];
           break;
       }
     }
 
-    return u
-  })
+    return u;
+  });
 
   // determine response
   if (utils.reqIsXhr(req)) {
@@ -47,7 +47,7 @@ exports.show = function(req, res) {
       user : user
     });
   }
-}
+};
 
 
 exports.update = function(req, res) {
@@ -58,7 +58,7 @@ exports.update = function(req, res) {
   // checks we're logged in
   if (user) {
 
-    groupies = req.body
+    groupies = req.body;
 
     // get users from db
     User.find().where('_id').in(_.pluck(groupies, '_id')).exec(function (err, records) {
@@ -92,15 +92,13 @@ exports.update = function(req, res) {
 
       // groupies = _.each(groupies, var g, function() { g.updated = new Time.now() })
 
-      users = _.each(users, function(u){ delete u.password })
+      users = _.each(users, function(u){ delete u.password; });
 
       res.send(200, { users: users });
     });
 
   } else {
-    res.send(400, {
-      message: 'User is not signed in'
-    });
+    res.send(400, { message: 'User is not signed in' });
   }
 
-}
+};
