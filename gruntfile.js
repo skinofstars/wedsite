@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
   // deploy tasks
   grunt.registerTask('remote:setup', function() {
-    grunt.shipit.remote('cd deploy && mkdir -p node_modules bower_components');
+    grunt.shipit.remote('cd deploy && mkdir -p node_modules bower_components pids');
   });
 
   grunt.registerTask('remote:install', function () {
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('remote:restart', function () {
-    grunt.shipit.remote('cd deploy/current && forever restart server.js', this.async());
+    grunt.shipit.remote('cd deploy/current && forever stop 0 && forever start server.js', this.async());
   });
 
   grunt.shipit.on('deploy', function() {
