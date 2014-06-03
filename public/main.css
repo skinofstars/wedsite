@@ -1,16 +1,4 @@
-@font-face {
-  font-family: 'Oleo Script';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Oleo Script'), local('OleoScript-Regular'), url(/vendor/fonts/Oleo_Regular.woff) format('woff');
-}
 
-@font-face {
-  font-family: 'Maven Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Maven Pro'), url(/vendor/fonts/Maven_Pro.woff) format('woff');
-}
 
 
 body {
@@ -145,12 +133,56 @@ dt {
   margin-top: 40px;
 }
 
-animate-enter {
-  -webkit-transition: 1s linear all; /* Chrome */
-  transition: 1s linear all;
-  opacity: 0;
+.spotify-link {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
 }
 
-.animate-enter.animate-enter-active {
-  opacity: 1;
+/*div {
+  border: 1px solid red;
+}*/
+
+/* device stuff */
+.visible-phone {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 220% !important;
+  }
+  h2, h3 {
+    font-size: 150% !important;
+  }
+  h4 {
+    font-size: 100% !important;
+  }
+
+  .hidden-phone {
+    display: none !important;
+  }
+  .visible-phone {
+    display: block !important;
+  }
+  .navbar-nav li {
+    float: left;
+    padding-left: 0 !important;
+    font-size: 90.5%;
+  }
+
+  .branches {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 80;
+    height: 260px;
+    width: 396px;
+    background-image: url('branches.png');
+  }
+
+  .small-phone {
+    font-size: 62%;
+  }
+
 }

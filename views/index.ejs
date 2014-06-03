@@ -2,12 +2,13 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container col-sm-12">
     <ul class="nav navbar-nav">
-      <li><a href="#couple">The couple</a></li>
-      <li><a href="#event">Event</a></li>
-      <li><a href="#venue">Venue</a></li>
-      <li><a href="#area">Area</a></li>
-      <li><a href="#gifting">Gifting</a></li>
-      <li><a href="#thanks">Thanks</a></li>
+      <li class=" visible-phone"><a href="#">Top</a></li>
+      <li class=" hidden-phone"><a href="#couple">The couple</a></li>
+      <li class=""><a href="#event">Event</a></li>
+      <li class=""><a href="#venue">Venue</a></li>
+      <li class=" hidden-phone"><a href="#area">Area</a></li>
+      <li class=""><a href="#gifting">Gifting</a></li>
+      <li class=" hidden-phone"><a href="#thanks">Thanks</a></li>
     </ul>
   </div>
 </nav>
@@ -17,7 +18,7 @@
   <div class="alert alert-danger"><%= message %></div>
 <% } %>
 
-<section class="row" id="leader" ng-controller="RsvpCtrl">
+<section class="row" id="leader">
 <div class="branches"></div>
   <div class="container">
     <div class="col-sm-12">
@@ -149,7 +150,11 @@
     <div class="col-sm-12">
       <h3>Event Schedule</h3>
 
-      <dl>
+      <div ng-if="state == 0 || state == 1">
+        <p>Sign in at the <a href="#">RSVP</a> to view the schedule</p>
+      </div>
+
+      <dl ng-if="state == 2">
         <dt>13:00 - You arrive!</dt>
         <dd>Grab yourself a drink, mingle a bit, relax.</dd>
 
@@ -163,8 +168,8 @@
         <dd>Enjoy some hog roast and take a seat for a long, drawn out collection of monotonous speeches</dd>
 
         <dt>19:00 - Party.</dt>
-        <dd>This is what we’re here for, right?!
-        http://open.spotify.com/user/skinofstars/playlist/1kpjGnKROK9lD15MtTPRYt</dd>
+        <dd>This is what we’re here for, right?! <a class="spotify-link" href="http://open.spotify.com/user/skinofstars/playlist/1kpjGnKROK9lD15MtTPRY"><img src="spotify-icon.png" alt="spotify playlist" class="img-responsive"/></a>
+        </dd>
 
         <dt>01:00 - Fin.</dt>
         <dd>This is where you get kicked out. Hope you booked a taxi.</dd>
@@ -182,7 +187,7 @@
       <h3>Venue</h3>
 
 
-      <p>Crazy Bear, Stadhampton, Oxfordshire, OX44 7UR - <a href="http://www.crazybeargroup.co.uk/stadhampton/">crazybeargroup.co.uk/stadhampton</a></p>
+      <p>Crazy Bear, Stadhampton, Oxfordshire, OX44 7UR - <a class="small-phone" href="http://www.crazybeargroup.co.uk/stadhampton/">crazybeargroup.co.uk/stadhampton</a></p>
 
     </div>
 
@@ -297,10 +302,21 @@
     <div class="col-sm-12">
       <h3>Gifting</h3>
 
-      <p>Gifting info</p>
-      <p>Money please bank deets</p>
-      <p>What we really want is for you come and help us celebrate, and most importantly, have a great time.  If you do wish to give us a gift, however, we would greatly appreciate a donation to help us fund our honeymoon.  Please find our bank details below:</p>
-      <p>Sort Code:  Account No.:    </p>
+      <p>What we really want is for you come and help us celebrate, and most importantly, have a great time.  If you do wish to give us a gift, however, we would greatly appreciate a donation to help us fund our honeymoon.</p>
+
+      <div ng-if="state == 0 || state == 1">
+        <p><small>Please sign in at the <a href="#">RSVP</a> to view account details</small></p>
+      </div>
+      <div ng-if="state == 2">
+        <dl>
+          <dt>Account number</dt>
+          <dd>84220806</dd>
+
+          <dt>Sort Code</dt>
+          <dd>08-93-00</dd>
+        </dl>
+      </div>
+
     </div>
   </div>
 </section>
@@ -310,10 +326,10 @@
     <div class="col-sm-12">
       <h3>Thank you</h3>
         <p>For all your help in putting this together. For putting up with us
-          while we panic our way through organising. For being there for us.
+          while we panic our way through organising. For making our day truly one to remember.
         </p>
         <p>
-          <strong>Parents:</strong> Dr. Stephen Chiang, Emma Chiang, Nicki Carmody
+          <strong>Parents:</strong> Stephen Chiang, Emma Chiang, Nicki Carmody
         </p>
         <p>
           <strong>Bridesmaids:</strong> Amy Battrick, Abby Harris, Sarah Carmody, Shiao-li Green.

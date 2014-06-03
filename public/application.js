@@ -2,6 +2,8 @@
 
 angular.module('Towed', ['ngResource']);
 
+var userState = 0;
+
 function RsvpCtrl($scope, $resource, $http) {
   $scope.rsvpResource     = $resource('/rsvp');
   $scope.signinResource   = $resource('/signin');
@@ -58,6 +60,10 @@ function RsvpCtrl($scope, $resource, $http) {
       });
   }
 
+}
+
+function GiftingCtrl($scope) {
+  $scope.state = userState;
 }
 
 L.mapbox.map('map', 'skinofstars.ibhbkgn1').setView([51.681, -1.13], 16);

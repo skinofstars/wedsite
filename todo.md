@@ -13,7 +13,6 @@ rsvp
 
 technical
 - move node_modules to shared folder
-- fix forever restart
 - allow admin to delete users
 - fix npm install
 - fix bower install
