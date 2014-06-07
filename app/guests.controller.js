@@ -35,9 +35,16 @@ exports.list = function(req, res) {
 
 };
 
-exports.create = function(req, res) {
+// exports.create = function(req, res) {
 
-};
+// };
+
+exports.delete = function(req, res) {
+  isAdmin(req, res, function() {
+    User.find({ _id: req.params.id }).remove().exec();
+    res.redirect('/create');
+  });
+}
 
 function isAdmin(req, res, next) {
   if (req.isAuthenticated() && req.user.isAdmin) {

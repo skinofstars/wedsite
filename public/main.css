@@ -3,24 +3,32 @@
 
 body {
   /*padding-top:40px;*/
-  font-family: 'Maven Pro';
-  font-size: 250%;
+
 }
+
+section {
+  /*height: 85vh;*/
+  padding: 80px 0;
+  font-family: 'Maven Pro';
+  font-size: 180%;
+  /*width: 95vw;*/
+}
+
 
 h1, h2, h3, h4 {
   font-family: 'Oleo Script';
 }
 
 h2, h3 {
-  font-size: 200% !important;
+  font-size: 200%;
 }
 
 h4 {
-  font-size: 150% !important;
+  font-size: 150%;
 }
 
 h1 {
-  font-size: 450% !important;
+  font-size: 450%;
 }
 
 .subby {
@@ -28,23 +36,21 @@ h1 {
   font-family: 'Oleo Script';
 }
 
-section {
-  /*height: 85vh;*/
-  padding: 80px 0;
-  /*width: 95vw;*/
-}
 
 .navbar-default {
   background-color: rgba(255,255,255,0.5);
 }
 
 .nav a  {
-    -webkit-transition: all .4s ease-in-out;
+/*    -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;*/
 }
 
+.navbar-nav li {
+  font-size: 1.5em;
+}
 /*
   blue 3CB5B5
   orange EC6C20
@@ -143,6 +149,12 @@ dt {
   border: 1px solid red;
 }*/
 
+.create-list {
+
+  font-size: 1.5em;
+
+}
+
 /* device stuff */
 .visible-phone {
   display: none;
@@ -150,25 +162,25 @@ dt {
 
 @media (max-width: 768px) {
   h1 {
-    font-size: 220% !important;
+    font-size: 220%;
   }
   h2, h3 {
-    font-size: 150% !important;
+    font-size: 150%;
   }
   h4 {
-    font-size: 100% !important;
+    font-size: 100%;
   }
 
   .hidden-phone {
     display: none !important;
   }
   .visible-phone {
-    display: block !important;
+    display: block;
   }
   .navbar-nav li {
     float: left;
-    padding-left: 0 !important;
-    font-size: 90.5%;
+    padding-left: 0;
+    font-size: 1.5em;
   }
 
   .branches {

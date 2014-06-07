@@ -50,6 +50,10 @@ module.exports = function(app, passport) {
     failureFlash : true
   }));
 
+  app.get('/delete/:id', isLoggedIn, function(req, res) {
+    guestscontroller.delete(req, res)
+  });
+
   // our bank details for gifting
   // btc wallet, for lulz
 

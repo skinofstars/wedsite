@@ -77,6 +77,7 @@
       <th>Ceremony</th>
       <th>Reception</th>
       <th>Party</th>
+      <th></th>
     </tr>
     <% if (typeof users != "undefined") { %>
       <% for(var i=0; i<users.length; i++) { %>
@@ -92,6 +93,9 @@
           </td>
           <td class="<% if (!users[i].invite.party) { %>text-muted<%}%>">
             <%= (users[i].updated !== undefined) ? (users[i].rsvp.party ? 'Yes' : 'No') : 'Not responded' %>
+          </td>
+          <td>
+            <a href="/delete/<%= users[i]._id %>">Delete</a>
           </td>
         </tr>
       <% } %>
