@@ -95,7 +95,7 @@
             <%= (users[i].updated !== undefined) ? (users[i].rsvp.party ? 'Yes' : 'No') : 'Not responded' %>
           </td>
           <td>
-            <a href="/delete/<%= users[i]._id %>">Delete</a>
+            <a href="/delete/<%= users[i]._id %>" onclick="return confirm('Are you sure?')">Delete</a>
           </td>
         </tr>
       <% } %>
