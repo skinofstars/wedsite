@@ -87,8 +87,13 @@
                   </label>
                 </div>
 
+                <div class="rsvpactions">
+                  <button ng-click="updateUser(groupy)" ng-disabled="form.$invalid || isUnchanged(groupy)" class="btn btn-primary btn-md">Update RSVP</button>
+                  <br>
+                </div>
+
                 <div class="col-sm-12 clearfix">
-                  <small class="pull-right">Updated {{ groupy.updated | amCalendar }}</small>
+                  <small class="pull-right">Last updated {{ groupy.updated | amCalendar }}</small>
                 </div>
 
               </div>
@@ -99,17 +104,18 @@
         </form>
       </div>
 
-      <div class="rsvpactions">
-        <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-primary btn-lg">Update RSVP</button>
-        <br>
-        <a href="/signout" class="btn btn-default btn-sm">Sign out</a>
-      </div>
-
     </div>
 
-    <div class="rsvpinfo col-sm-12">
-      <p>Please RSVP by July 11<sup>th</sup> 2014</p>
+    <div class="col-sm-12">
+      <div class="rsvpactions pull-right">
+        <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-primary btn-lg">Update everyone's RSVP</button>
+        <br>
+        <a href="/signout" class="btn btn-sm pull-right">Sign out</a>
+      </div>
 
+      <div class="rsvpinfo col-sm-12">
+        <p>Please RSVP by July 11<sup>th</sup> 2014</p>
+      </div>
     </div>
 
 

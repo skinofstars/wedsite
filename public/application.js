@@ -44,6 +44,13 @@ function RsvpCtrl($scope, $resource, $http) {
     });
   };
 
+  $scope.updateUser = function(user) {
+    var users = [user];
+    $scope.rsvpResource.save(users, function(res) {
+      return $scope.users = res.users;
+    });
+  }
+
   $scope.isUnchanged = function(users) {
     return angular.equals(users, $scope.master);
   };

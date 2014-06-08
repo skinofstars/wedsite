@@ -92,9 +92,15 @@ exports.update = function(req, res) {
 
       // groupies = _.each(groupies, var g, function() { g.updated = new Time.now() })
 
-      users = _.each(users, function(u){ delete u.password; });
+      console.log(user.group)
 
-      res.send(200, { users: users });
+      // gah, let's just hit the db again!
+      User.find({ 'group' : user.group }, function (err, records) {
+        console.log(records)
+        users = _.each(records, function(u) { delete u.password; });
+        res.send(200, { users: users });
+      });
+
     });
 
   } else {

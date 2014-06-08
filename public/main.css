@@ -134,12 +134,16 @@ dt {
 .rsvpstep .checkbox input[type="checkbox"] {
   margin-top: 14px;
 }
-.rsvpstep .btn-lg {
+/*.rsvpstep .btn-lg {
   background-color: #EC6C20;
   border-color: #4dc6c6;
-}
-.rsvpstep, .rsvpinfo {
+}*/
+.rsvpstep {
   margin-top: 40px;
+}
+
+.rsvpinfo {
+  margin-top: 20px;
 }
 
 .spotify-link {
