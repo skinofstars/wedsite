@@ -45,6 +45,7 @@ function RsvpCtrl($scope, $resource, $http) {
   };
 
   $scope.updateUser = function(user) {
+    $scope.master = angular.copy(users);
     var users = [user];
     $scope.rsvpResource.save(users, function(res) {
       return $scope.users = res.users;

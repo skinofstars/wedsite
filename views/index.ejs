@@ -64,7 +64,7 @@
           <div ng-repeat="groupy in users">
 
             <div class="col-sm-6">
-              <div class="well">
+              <div class="well" ng-form="innerForm">
                 <h3>{{ groupy.username }}</h3>
 
                 <p>I would like to attend...</p>
@@ -107,15 +107,18 @@
     </div>
 
     <div class="col-sm-12">
-      <div class="rsvpactions pull-right" ng-if="state == 2">
-        <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-primary btn-lg">Update everyone's RSVP</button>
-        <br>
-        <a href="/signout" class="btn btn-sm pull-right">Sign out</a>
-      </div>
 
-      <div class="rsvpinfo col-sm-12">
+
+      <div class="rsvpinfo col-sm-6">
         <p>Please RSVP by July 11<sup>th</sup> 2014</p>
       </div>
+
+      <div class="rsvpactions col-sm-6" ng-if="state == 2">
+      <!--   <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-primary btn-lg">Update everyone's RSVP</button>
+        <br> -->
+        <a href="/signout" class="btn btn-xs pull-right">Sign out</a>
+      </div>
+
     </div>
 
 
@@ -344,10 +347,12 @@
           <strong>Groomsmen:</strong> Edward Lucas, Charlie Thomas, Roland Romata, Toby Chiang
         </p>
     </div>
+
+    <hr>
+
+    <div class="col-sm-12">
+      <p><small>Any problems, or you just wanna say "hi", you can email us at <a href="mailto:kevin@skinofstars.com">kevin@skinofstars.com</a> or <a href="mailto:eachiang@gmail.com">eachiang@gmail.com</a>. Thanks :)</small></p>
+    </div>
   </div>
 </section>
-
-
-
-
 

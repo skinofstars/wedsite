@@ -3,25 +3,74 @@
 var User  = require('./user.schema'),
     _     = require('lodash'),
     utils = require('../config/utils'),
-    users = {}, // bit hacky, sticking it here so i can update it in User.find()
     groupies;
 
 exports.show = function(req, res) {
   var user  = req.user;
+  user.password = '';
 
   // find the group members
-  User.find({group:user.group}, function(err, rels) {
+  User.find({group:user.group}, function(err, records) {
     // TODO: remove =current user from group
-    users = rels;
+    var users = cleanUsers(records);
+
+    // determine response
+    if (utils.reqIsXhr(req)) {
+      res.send(200, { user: user, users: users });
+    } else {
+      res.render('rsvp', {
+        user : user
+      });
+    }
+
   });
 
-  // bit of security cleanup
-  user.password = '';
-  users = _.map(users, function(u) {
+};
+
+
+exports.update = function(req, res) {
+
+  var user = req.user;
+  var message = null;
+
+  // checks we're logged in
+  if (user) {
+
+    // submitted users
+    groupies = req.body;
+
+    User.find({ group : user.group }, function (err, records) {
+
+      // iterate through db returned records
+      _.forEach(records, function(record) {
+        // find the groupy that matches the record
+        var groupy = _.where(groupies, { username : record.username })[0];
+        if (typeof groupy !== "undefined") {
+          record.rsvp = _.extend(record.rsvp, groupy.rsvp);
+          record.updated = Date.now();
+          record.save();
+        }
+      });
+
+      // tidy and respond with set
+      var users = cleanUsers(records);
+      res.send(200, { users: users, message: "RSVP updated" });
+
+    });
+
+
+  } else {
+    res.send(400, { message: 'User is not signed in' });
+  }
+
+};
+
+
+var cleanUsers = function(users) {
+  var users = _.map(users, function(u) {
 
     // convert to a normal object, so we can more freely manipulate it
     u = u.toObject();
-
     u.password = '';
 
     // remove invite options here rather than doing checks in the view
@@ -39,72 +88,5 @@ exports.show = function(req, res) {
     return u;
   });
 
-  // determine response
-  if (utils.reqIsXhr(req)) {
-    res.send(200, { user: user, users: users });
-  } else {
-    res.render('rsvp', {
-      user : user
-    });
-  }
-};
-
-
-exports.update = function(req, res) {
-
-  var user = req.user;
-  var message = null;
-
-  // checks we're logged in
-  if (user) {
-
-    groupies = req.body;
-
-    // get users from db
-    User.find().where('_id').in(_.pluck(groupies, '_id')).exec(function (err, records) {
-      users = records;
-
-      // update each user
-      for (var i in users) {
-
-        // double check using right groupy to merge with
-        var groupy = _.where(groupies, {username: users[i].username})[0];
-
-        users[i].rsvp = _.extend(users[i].rsvp, groupy.rsvp);
-        users[i].updated = Date.now();
-
-        // console.log(users[i]);
-
-        users[i].save(function(err) {
-          if (err) {
-            // console.log(err);
-            res.send(400, {
-              message: "error saving users"
-            });
-          }
-        });
-
-      }
-
-      // FIXME should be map or something?
-      // anyway, groupies isn't updating the date
-      // groupies = _.each(groupies, var g, _.omit(g, "password"));
-
-      // groupies = _.each(groupies, var g, function() { g.updated = new Time.now() })
-
-      console.log(user.group)
-
-      // gah, let's just hit the db again!
-      User.find({ 'group' : user.group }, function (err, records) {
-        console.log(records)
-        users = _.each(records, function(u) { delete u.password; });
-        res.send(200, { users: users });
-      });
-
-    });
-
-  } else {
-    res.send(400, { message: 'User is not signed in' });
-  }
-
-};
+  return users;
+}

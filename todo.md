@@ -1,18 +1,8 @@
 
-
-
-rsvp
-
-- enter email box, optional
-- signout?
-
-- update per user
-- add email
+- sort by, shifting on update
 
 - map overlay
 - update image
-
-technical
 
 - run bowercopy task on successful deploy
 
