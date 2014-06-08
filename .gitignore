@@ -4,3 +4,4 @@ bower_components/
 public/vendor/
 app/user.seeds.js
 config/aws-ec2.json
+passes.js

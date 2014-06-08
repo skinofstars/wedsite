@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Towed', ['ngResource']);
+angular.module('Towed', ['ngResource', 'angularMoment']);
 
 var userState = 0;
 
@@ -62,8 +62,25 @@ function RsvpCtrl($scope, $resource, $http) {
 
 }
 
-function GiftingCtrl($scope) {
-  $scope.state = userState;
+// check for map element before adding to page
+var mapElem = document.getElementById('map');
+if (mapElem !== null) {
+  L.mapbox.map('map', 'skinofstars.ibhbkgn1').setView([51.681, -1.13], 16);
 }
 
-L.mapbox.map('map', 'skinofstars.ibhbkgn1').setView([51.681, -1.13], 16);
+String.prototype.capitalise = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+// make time pretty.
+// this is only really useful for the create listing. use angular-moment for rsvp
+var nodeList = document.querySelectorAll('.time'),
+    then;
+for (var i = 0, length = nodeList.length; i < length; i++) {
+  then = moment(nodeList[i].innerHTML);
+
+  if (then.isValid()) {
+    nodeList[i].innerHTML = then.fromNow().capitalise();
+  }
+}
+

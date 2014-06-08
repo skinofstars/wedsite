@@ -131,8 +131,11 @@ dt {
   background-color: #f64c62;
   border-color: transparent;
 }
-#rsvp .btn-lg {
-  background-color: #3CB5B5;
+.rsvpstep .checkbox input[type="checkbox"] {
+  margin-top: 14px;
+}
+.rsvpstep .btn-lg {
+  background-color: #EC6C20;
   border-color: #4dc6c6;
 }
 .rsvpstep, .rsvpinfo {

@@ -29,6 +29,7 @@ module.exports = function(grunt) {
           'js/angular.min.js': 'angular/angular.min.js',
           'js/angular-resource.min.js': 'angular-resource/angular-resource.min.js',
           'js/angular-route.min.js': 'angular-route/angular-route.min.js',
+          'js/angular-moment.min.js': 'angular-moment/angular-moment.min.js',
           'js/moment.min.js' : 'momentjs/min/moment.min.js'
         }
       }
