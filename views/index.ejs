@@ -107,7 +107,7 @@
     </div>
 
     <div class="col-sm-12">
-      <div class="rsvpactions pull-right">
+      <div class="rsvpactions pull-right" ng-if="state == 2">
         <button ng-click="update(users)" ng-disabled="form.$invalid || isUnchanged(users)" class="btn btn-primary btn-lg">Update everyone's RSVP</button>
         <br>
         <a href="/signout" class="btn btn-sm pull-right">Sign out</a>
